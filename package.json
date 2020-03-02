@@ -1,0 +1,22 @@
+{
+  "name": "pocket_pals_front",
+  "version": "1.0.0",
+  "description": "front end to app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ChanceMims/pocket_pals_front_end.git"
+  },
+  "author": "ChanceMims",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChanceMims/pocket_pals_front_end/issues"
+  },
+  "homepage": "https://github.com/ChanceMims/pocket_pals_front_end#readme",
+  "dependencies": {
+    "react": "^16.13.0"
+  }
+}

@@ -1,5 +1,7 @@
 .App {
+  height: 500px;
   text-align: center;
+  background-image: url(https://www.asakura-japan.com/data/asakura-japan/product/20160706_ac1738.jpg);
 }
 
 .App-logo {

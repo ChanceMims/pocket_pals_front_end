@@ -5,7 +5,7 @@ const link = {
   width: "100px",
   padding: "12px",
   margin: "0 6px 6px",
-  background: "blue",
+  background: "red",
   textDecoration: "none",
   color: "white"
 };
@@ -22,7 +22,7 @@ class NavBar extends Component {
             background: "darkblue"
           }}
         >
-          <img src="https://img.icons8.com/plasticine/100/000000/pokeball.png"></img>
+          Home
         </NavLink>
         <NavLink
           to="/decks"
@@ -35,14 +35,14 @@ class NavBar extends Component {
           Decks
         </NavLink>
         <NavLink
-          to="/login"
+          to={this.props.loggedIn ? '/profile' : '/login'}
           exact
           style={link}
           activeStyle={{
             background: "darkblue"
           }}
         >
-          Login
+          {this.props.loggedIn ? 'Profile' : 'Log In'}
         </NavLink>
       </div>
     );

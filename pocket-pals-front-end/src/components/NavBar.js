@@ -35,6 +35,15 @@ class NavBar extends Component {
           Decks
         </NavLink>
         <NavLink
+          to="/battle"
+          exact
+          style={link}
+          activeStyle={{
+            background: "darkblue"
+          }
+        }
+        >Do Battle</NavLink>
+        <NavLink
           to={this.props.loggedIn ? '/profile' : '/login'}
           exact
           style={link}

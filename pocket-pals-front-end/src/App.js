@@ -69,13 +69,13 @@ class App extends Component{
           <NavBar loggedIn={!!this.state.currentUser}/>
           <Route exact path="/" component={Home} />
           <Route exact path="/decks"
-           render={(props) => <DeckContainer {...props} decks={this.state.decks}/>}  />
+           render={(props) => <DeckContainer {...props}  decks={this.state.decks}/>}  />
           <Route exact path="/login" 
            render={(props) => <Login {...props} handleSubmit={this.handleSubmit} />} />
           <Route exact path="/profile"
             render={(props) => <Profile {...props} curentUser={this.state.currentUser} />} />
           <Route exact path="/battle"
-           render={(props) => <BattleContainer {...props} decks={this.state.decks}/>}  />
+           render={(props) => <BattleContainer {...props}  decks={this.state.decks}/>}  />
         </div>
       </Router>
       

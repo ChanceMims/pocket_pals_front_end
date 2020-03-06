@@ -59,10 +59,19 @@ class BattleContainer extends Component{
 
     render(){
         return(
-            <Grid>
+            <div style={{  
+                backgroundImage: "url(" + "https://www.ssbwiki.com/images/thumb/7/73/SSBU-Pok%C3%A9mon_Stadium_2.png/1200px-SSBU-Pok%C3%A9mon_Stadium_2.png" + ")",
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                height: '100vh',
+                width: '100vw'
+              }}>
+
+<Grid>
                 {
                     this.state.confirmed ?
-
+                    
                     <Battlefield pals={this.state.myPals} />
 
                     :
@@ -91,12 +100,13 @@ class BattleContainer extends Component{
                </Grid.Column>
 
                     </Fragment>
-
-                    
-
                 }
                
             </Grid>
+
+
+              </div>
+            
         )
     }
 }

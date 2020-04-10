@@ -9,8 +9,10 @@ const PocketPal = (props) => (
             onDragStart={e => props.handleDrag(props.pal)}
         >
             <Card>
-                <Image src={props.pal.sprites.front}/>
-                <Card.Header>{props.pal.name}</Card.Header>
+            <Card.Header>{props.pal.name}</Card.Header>
+                <Image src={props.pal.img_url}/>
+
+                
             
             </Card>
         </div>

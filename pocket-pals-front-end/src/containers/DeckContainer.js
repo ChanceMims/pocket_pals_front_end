@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PalsIndex from './PalsIndex'
-import {Grid} from 'semantic-ui-react'
+import {Grid, Image} from 'semantic-ui-react'
 import Deck from '../components/Deck'
 import MyDeck from '../components/MyDeck'
 import Cookies from 'universal-cookie';
@@ -21,8 +21,6 @@ class DeckContainer extends Component{
      handleClick = deck =>{
           const cookie = new Cookies();
           const authToken = cookie.get('userToken');
-          console.log(cookie.get('userToken'))
-          //console.log(deck)
           fetch(`http://localhost:3000/decks/${deck.id}`, {
                method: 'GET',
                headers: {
@@ -61,7 +59,8 @@ class DeckContainer extends Component{
           this.setState({
                myPals: [...this.state.myPals, this.state.selected]
           })
-          //console.log(this.state.myPals)
+          
+          console.log(this.state.myPals)
      }
 
      handleSaveDeck = () => {
@@ -93,7 +92,8 @@ class DeckContainer extends Component{
                <Grid>
                <Grid.Column width={4}>
                     {this.props.decks.map(deck => <Deck handleClick={this.handleClick} key={deck.name} deck={deck}/>)}
-                    {!!this.state.currentDeck ? <button onClick={e => this.handleSaveDeck()}> Save Deck </button> : ''}
+                         {!!this.state.currentDeck ? <button onClick={e => this.handleSaveDeck()}> Save Deck </button> : ''}
+                         <Image src={'pocketCard.png'} onClick={() => this.handleClick()}/>
                </Grid.Column>
                <Grid.Column width={12}>
                     {!!this.state.currentDeck && <Grid.Row>
@@ -108,7 +108,7 @@ class DeckContainer extends Component{
           )
      }
 
-    
+   // { make the pokit pals the right size height:300px, width:pc300}
 
 }
      

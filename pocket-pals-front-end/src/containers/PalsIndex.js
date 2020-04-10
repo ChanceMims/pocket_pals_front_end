@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import PocketPal from '../components/PocketPal'
 import { Grid } from 'semantic-ui-react';
+import PalCard from '../components/PalCard';
 
 
 
@@ -13,10 +13,12 @@ class PalsIndex extends Component{
         }
     }
 
-    componentDidMount(){
-        fetch('http://localhost:3001/pokemon')
+    componentDidMount() {
+        fetch('http://localhost:3000/pocket_pals')
         .then(resp => resp.json())
-        .then(json => this.setState({pals: json}))
+            .then(json => {
+                this.setState({ pals: json });
+         })
     }
 
     render(){
@@ -24,7 +26,7 @@ class PalsIndex extends Component{
         return(
             <Grid>
                 <Grid.Row columns={4}>
-                    {this.state.pals.map(pal => <PocketPal handleDrag={this.props.handleDrag} key={pal.name} pal={pal}/>)}
+                    {this.state.pals.map(pal => <PalCard handleDrag={this.props.handleDrag} key={pal.name} pal={pal}/>)}
                 </Grid.Row>
             </Grid>
             

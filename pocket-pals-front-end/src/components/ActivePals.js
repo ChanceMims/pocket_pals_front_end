@@ -10,26 +10,18 @@ const ActivePals = props => (
             onDragOver={e => {
                 e.stopPropagation();
                 e.preventDefault();
-                {console.log('drop here')}
-            }
-                
-                }
-                
-            onDrop={e => props.handleActivate()}
-
- 
-            
+                console.log('drop here')
+            } 
+                }    
+            onDrop={e => props.handleActivate()} 
             >
-                
-
                 {props.pals.map(pal => (
                     <Grid.Column>
                         <div            
                             draggable
                             onDragStart={e => props.handleDrag(pal)}>
                                 <PalCard  pal={pal}/>
-                        </div>
-                        
+                        </div> 
                     </Grid.Column>
                 ))}
             </div>

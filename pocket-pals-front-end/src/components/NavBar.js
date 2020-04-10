@@ -4,7 +4,8 @@ import { NavLink } from "react-router-dom";
 const link = {
   width: "100px",
   padding: "12px",
-  margin: "0 6px 6px",
+  // margin: "0 6px 6px",
+  borderStyle: 'solid',
   background: "red",
   textDecoration: "none",
   color: "white"
@@ -42,17 +43,36 @@ class NavBar extends Component {
             background: "darkblue"
           }
         }
-        >Do Battle</NavLink>
-        <NavLink
-          to={this.props.loggedIn ? '/profile' : '/login'}
+        >Do Battle
+        </NavLink>
+
+        {
+          this.props.loggedIn ? 
+            <NavLink
+          to='/profile'
           exact
           style={link}
           activeStyle={{
             background: "darkblue"
           }}
         >
-          {this.props.loggedIn ? 'Profile' : 'Log In'}
+              Profile
         </NavLink>
+            :
+         <NavLink
+          to='/login'
+          exact
+          style={link}
+          activeStyle={{
+            background: "darkblue"
+          }}
+        >
+          Log In
+        </NavLink>
+        }
+
+        
+       
       </div>
     );
   }

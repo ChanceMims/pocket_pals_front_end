@@ -9,6 +9,7 @@ import Login from './components/Login'
 import Profile from './components/Profile'
 import Cookies from 'universal-cookie';
 import BattleContainer from './containers/BattleContainer'
+import { Grid } from 'semantic-ui-react'
 
 const BASEURL = 'http://localhost:3000'
 
@@ -22,9 +23,21 @@ class App extends Component{
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const cookies = new Cookies();
-    if(cookies.get('userToken')){console.log('cookies present')}
+    if (cookies.get('userToken')) {
+      fetch(`${BASEURL}/profile`, {
+        headers: {
+
+         Authorization: "Bearer " + cookies.get("userToken")
+        }
+      })
+        .then(resp => resp.json())
+        .then(json => this.setState({
+          currentUser: json.user, 
+          decks: json.decks
+        }))
+    }
     
   }
 
@@ -65,18 +78,27 @@ class App extends Component{
   render(){
     return (
       <Router>
-        <div className="App">
-          <NavBar loggedIn={!!this.state.currentUser}/>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/decks"
-           render={(props) => <DeckContainer {...props}  decks={this.state.decks}/>}  />
-          <Route exact path="/login" 
-           render={(props) => <Login {...props} handleSubmit={this.handleSubmit} />} />
-          <Route exact path="/profile"
-            render={(props) => <Profile {...props} curentUser={this.state.currentUser} />} />
-          <Route exact path="/battle"
-           render={(props) => <BattleContainer {...props}  decks={this.state.decks}/>}  />
-        </div>
+        <Grid className="App">
+          <Grid.Row>
+            <Grid.Column>
+              <NavBar loggedIn={!!this.state.currentUser}/>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column>
+               <Route exact path="/" component={Home} />
+              <Route exact path="/decks"
+              render={(props) => <DeckContainer {...props}  decks={this.state.decks}/>}  />
+              <Route exact path="/login" 
+              render={(props) => <Login {...props} handleSubmit={this.handleSubmit} />} />
+              <Route exact path="/profile"
+                render={(props) => <Profile {...props} curentUser={this.state.currentUser} />} />
+              <Route exact path="/battle"
+              render={(props) => <BattleContainer {...props}  decks={this.state.decks}/>}  />
+            </Grid.Column>
+          </Grid.Row>
+         
+        </Grid>
       </Router>
       
     );

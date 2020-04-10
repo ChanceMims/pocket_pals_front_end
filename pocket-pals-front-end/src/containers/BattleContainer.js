@@ -3,7 +3,7 @@ import Deck from '../components/Deck'
 import { Button, Grid, Confirm } from 'semantic-ui-react'
 import Cookies from 'universal-cookie';
 import PalCard from '../components/PalCard'
-import MyDeck from '../components/MyDeck'
+//import MyDeck from '../components/MyDeck'
 import Battlefield from './Battlefield';
 
 class BattleContainer extends Component{
@@ -60,7 +60,7 @@ class BattleContainer extends Component{
     render(){
         return(
             <div style={{  
-                backgroundImage: "url(" + "https://www.ssbwiki.com/images/thumb/7/73/SSBU-Pok%C3%A9mon_Stadium_2.png/1200px-SSBU-Pok%C3%A9mon_Stadium_2.png" + ")",
+                backgroundImage: "url(https://www.ssbwiki.com/images/thumb/7/73/SSBU-Pok%C3%A9mon_Stadium_2.png/1200px-SSBU-Pok%C3%A9mon_Stadium_2.png)",
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
@@ -91,11 +91,11 @@ class BattleContainer extends Component{
                     : ''}
                </Grid.Column>
                <Grid.Column width={12}>
-                    {!!this.state.currentDeck && <Grid.Row>
+                    {!!this.state.currentDeck && <div>
                         {this.state.myPals.map(pal => (
                                 <PalCard pal={pal}></PalCard>
                             ))}
-                    </Grid.Row>}
+                    </div>}
 
                </Grid.Column>
 

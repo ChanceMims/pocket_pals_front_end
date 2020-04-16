@@ -1,6 +1,7 @@
 import React from 'react'
 import {Grid, Card, Image} from 'semantic-ui-react'
 //import PocketPal from './PocketPal'
+import PalCard from './PalCard'
 
 const MyDeck = props => (
     <Grid>
@@ -8,19 +9,9 @@ const MyDeck = props => (
 
         {props.pals.map(pal => (
             
-            <Card key={pal.name}>
-            <div
-                    // onDragOver={e => {
-                    //     e.stopPropagation();
-                    //     e.preventDefault();
-                    // }
-                        
-                        //}
-                     //onDrop={e => props.handleDrop(props.deck)}
-                     >
-                        <Image src={!!pal.img_url ? pal.img_url : pal.sprites.front} />
-                    </div> 
-            </Card>
+            <PalCard pal={pal} key={pal.name} />
+       
+            
         
     ))}
 

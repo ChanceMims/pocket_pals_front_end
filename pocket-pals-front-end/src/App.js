@@ -88,7 +88,7 @@ class App extends Component{
             <Grid.Column>
                <Route exact path="/" component={Home} />
               <Route exact path="/decks"
-              render={(props) => <DeckContainer {...props}  decks={this.state.decks}/>}  />
+                render={(props) => <DeckContainer {...props} decks={this.state.decks} user={this.state.currentUser}/>}  />
               <Route exact path="/login" 
               render={(props) => <Login {...props} handleSubmit={this.handleSubmit} />} />
               <Route exact path="/profile"

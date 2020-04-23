@@ -21,7 +21,7 @@ class BattleContainer extends Component{
     handleClick = deck =>{
         const cookie = new Cookies();
         const authToken = cookie.get('userToken');
-        console.log(cookie.get('userToken'))
+        // console.log(cookie.get('userToken'))
         //console.log(deck)
         fetch(`http://localhost:3000/decks/${deck.id}`, {
              method: 'GET',
@@ -34,12 +34,12 @@ class BattleContainer extends Component{
                   alert(json.message)
         }
         else{
-             console.log(json)
+            //  console.log(json)
              this.setState({
                   currentDeck: json,
                   myPals: json.pocket_pals
              })
-             console.log(this.state.myPals)
+            //  console.log(this.state.myPals)
         }
            
    }
@@ -53,7 +53,7 @@ class BattleContainer extends Component{
            open: false,
            confirmed: true
        })
-       console.log(this.state.confirmed)
+    //    console.log(this.state.confirmed)
    }
 
 
@@ -66,46 +66,36 @@ class BattleContainer extends Component{
                 backgroundRepeat: 'no-repeat',
                 height: '100vh',
                 width: '100vw'
-              }}>
-
-<Grid>
-                {
-                    this.state.confirmed ?
-                    
-                    <Battlefield pals={this.state.myPals} />
-
-                    :
-                    <Fragment>
-
-<Grid.Column width={4}>
-                    {this.props.decks.map(deck => <Deck handleClick={this.handleClick} key={deck.name} deck={deck}/>)}
-                    {!!this.state.currentDeck ? <div>
-
-                        <Button onClick={this.open}> Select Deck </Button> 
-                        <Confirm
-                        open={this.state.open}
-                        onCancel={this.close}
-                         onConfirm={this.handleConfirm} />
-
-                    </div>
-                    : ''}
-               </Grid.Column>
-               <Grid.Column width={12}>
-                    {!!this.state.currentDeck && <div>
-                        {this.state.myPals.map(pal => (
-                                <PalCard pal={pal}></PalCard>
-                            ))}
-                    </div>}
-
-               </Grid.Column>
-
-                    </Fragment>
-                }
-               
-            </Grid>
-
-
-              </div>
+            }}>
+                
+                <Grid>
+                    {
+                        this.state.confirmed ?
+                            <Battlefield pals={this.state.myPals} />
+                        :
+                            <Fragment>
+                        <Grid.Column width={4}>
+                        {this.props.decks.map(deck => <Deck handleClick={this.handleClick} key={deck.id} deck={deck}/>)}
+                        {!!this.state.currentDeck ? <div>
+                            <Button onClick={this.open}> Select Deck </Button> 
+                            <Confirm
+                            open={this.state.open}
+                            onCancel={this.close}
+                            onConfirm={this.handleConfirm} />
+                        </div>
+                        : ''}
+                        </Grid.Column>
+                        <Grid.Column width={12}>
+                                {!!this.state.currentDeck && <div>
+                                    {this.state.myPals.map(pal => (
+                                            <PalCard key={pal.id} pal={pal}></PalCard>
+                                        ))}
+                                </div>}
+                        </Grid.Column>
+                            </Fragment>
+                    }
+                </Grid>
+            </div>
             
         )
     }

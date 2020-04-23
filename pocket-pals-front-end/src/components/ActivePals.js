@@ -6,21 +6,24 @@ const ActivePals = props => (
     <Grid>
         <Grid.Row columns={6}>
             <div
-            style={{height: '30vh', width: '100vw'}}
-            onDragOver={e => {
-                e.stopPropagation();
-                e.preventDefault();
-                console.log('drop here')
+            style={{height: '30vh', width: '100vw', "borderStyle": "groove"}}
+                onDragEnter={e => {
+                    e.target.style.boxShadow = "2px 2px 20px yellow";
+                }
+                }
+                onDragLeave={e => {
+                e.target.style.boxShadow = "";
+            }
             } 
-                }    
-            onDrop={e => props.handleActivate()} 
+              onDrop={() => console.log('drop')}    
+            // onDrop={e => props.handleActivate()} 
             >
                 {props.pals.map(pal => (
                     <Grid.Column>
                         <div            
                             draggable
                             onDragStart={e => props.handleDrag(pal)}>
-                                <PalCard  pal={pal}/>
+                                <PalCard  pal={pal} key={pal.id}/>
                         </div> 
                     </Grid.Column>
                 ))}

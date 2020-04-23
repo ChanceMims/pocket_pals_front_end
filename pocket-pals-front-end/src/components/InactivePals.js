@@ -4,16 +4,13 @@ import PalCard from './PalCard'
 
 const InactivePals = props => (
     <Grid>
-        <Grid.Row columns={6}>
+        <Grid.Row columns={6} style={{"borderStyle": "groove"}}>
             {props.pals.map(pal => (
-                <Grid.Column>
-                    <div 
-                    draggable
-                    onDragStart={e => props.handleDrag(pal)}
-                    >
-                        <PalCard  pal={pal}/>
-                    </div>
-                    
+                <Grid.Column  key={pal.id}>
+                    <PalCard
+                        pal={pal}
+                        draggable
+                        handleDrag={e => props.handleDrag(pal)}/>
                 </Grid.Column>
             ))}
         </Grid.Row>

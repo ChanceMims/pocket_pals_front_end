@@ -5,7 +5,9 @@ const PalCard = props => (
 
     <div
         draggable
-    onDragStart={() => props.handleDrag(props.pal)}>
+        onDragStart={() => props.handleDrag(props.pal)}
+        onDrop={() => console.log('card drop')}
+    >
         <Card >
             <header>{props.pal.name}</header>
                 <Image src={props.pal.img_url} />

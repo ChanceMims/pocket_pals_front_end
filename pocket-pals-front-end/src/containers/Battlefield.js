@@ -84,7 +84,7 @@ class Battlefield extends Component{
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column >
-                        <ActivePals id='user-active' handleActivate={this.handleActivate} handleDrag={this.handleDrag} pals={this.state.myPals.filter(pal => (pal.status === 'active' ))}/>
+                        <ActivePals id='user-active' handleDrop={this.handleActivate} handleDrag={this.handleDrag} pals={this.state.myPals.filter(pal => (pal.status === 'active' ))}/>
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>

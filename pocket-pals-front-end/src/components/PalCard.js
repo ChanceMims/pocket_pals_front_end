@@ -6,7 +6,21 @@ const PalCard = props => (
     <div
         draggable
         onDragStart={() => props.handleDrag(props.pal)}
-        onDrop={() => console.log('card drop')}
+        onDrop={(e) => {
+             e.preventDefault();
+            e.target.style.boxShadow = "";
+            props.handleAttack(props.pal)
+        }}
+        onDragEnter={e => props.handleDragEnter(e)}
+        onDragLeave={e => {
+            e.preventDefault();
+            e.target.style.boxShadow = "";
+            }
+        } 
+                
+        onDragOver={event => {
+            event.preventDefault()
+        }}
     >
         <Card >
             <header>{props.pal.name}</header>

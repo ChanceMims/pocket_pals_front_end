@@ -14,7 +14,8 @@ class Battlefield extends Component{
             myPals: [...props.pals],
             turn: 'player',
             selectedPal: '',
-            botPals: []
+            botPals: [],
+            win: false
         }
     }
 
@@ -66,8 +67,49 @@ class Battlefield extends Component{
 
     }
 
+    handleAttack = (target) => {
+        const attacker = this.state.selectedPal;
+        const calculatedDamage = this.calcDamage(attacker, target);
+        target.hp = target.hp - calculatedDamage > 0 ? target.hp - calculatedDamage : 0 
+        // const updatedPal = Object.assign({}, target, { hp: target.hp - calculatedDamage > 0 ? target.hp - calculatedDamage : 0 })
+        if (target.hp === 0) {
+            // debugger
+            target.status = 'dead';
+            const newMessage = `${target.name} is dead`;
+            this.setState({
+                messages: [...this.state.messages, newMessage]
+            })
+        }
+        // console.log(updatedPal)
+        // this.setState({
+        //     botPals: [...this.state.botPals.filter(pal => pal.id != target.id), updatedPal]
+        // })
+        this.checkWin();
+        const newMessage = `${this.state.selectedPal.name} has attacked ${target.name} for ${calculatedDamage} damage`
+           this.setState({
+            messages: [...this.state.messages, newMessage]
+        })
+    }
+
+    calcDamage(attacker, target){
+        const damage = attacker.attack - target.defense;
+        return damage > 1 ? damage : 0;
+    }
+
+    checkWin= () => {
+        if (this.state.botPals.find(pal => pal.status !== 'dead')) {
+
+        }
+        else {
+            this.setState({win: true})
+        }
+    }
+
+   
+
     render(){
-        return(
+        return !this.state.win ? (
+            
             <Grid>
                 <Grid.Row>
                     <Grid.Column width={5}>
@@ -79,12 +121,16 @@ class Battlefield extends Component{
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column  >
-                            <ActivePals id='enemy-active' pals={this.state.botPals.filter(pal => (pal.status === 'active'))}/>
+                            <ActivePals id='enemy-active' handleAttack={this.handleAttack} pals={this.state.botPals.filter(pal => (pal.status === 'active'))}/>
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column >
-                        <ActivePals id='user-active' handleDrop={this.handleActivate} handleDrag={this.handleDrag} pals={this.state.myPals.filter(pal => (pal.status === 'active' ))}/>
+                        <ActivePals
+                            handleAttack={this.handleAttack}
+                            handleDrop={this.handleActivate}
+                            handleDrag={this.handleDrag}
+                            pals={this.state.myPals.filter(pal => (pal.status === 'active'))} />
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
@@ -94,6 +140,12 @@ class Battlefield extends Component{
                 </Grid.Row>
             </Grid>
         )
+            
+            :
+
+            <div>
+                <h1 style={{color: 'red'}}>congratulation! win!</h1>
+            </div>
     }
 }
 

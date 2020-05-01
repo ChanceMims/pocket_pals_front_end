@@ -5,42 +5,55 @@ import PalCard from './PalCard'
 const ActivePals = props => (
     <Grid>
         <Grid.Row columns={6}
-            
-            style={{height: '30vh', width: '100vw', "borderStyle": "groove"}}
-                onDragEnter={e => {
-                    e.preventDefault();
+            id='activate'
+            style={{ height: '30vh', width: '100vw', "borderStyle": "groove" }}
+               
+            onDragEnter={e => {
+                if (e.target.id === 'activate') {
+                     e.preventDefault();
                     e.target.style.boxShadow = "2px 2px 20px yellow";
                 }
-                }
-                onDragLeave={e => {
+               
+            }
+            }
+                
+            onDragLeave={e => {
+                if (e.target.id === 'activate') {
                     e.preventDefault();
                     e.target.style.boxShadow = "";
+                }
             }
-            } 
+            }
                 
-                onDragOver={event => {
-                    event.preventDefault()
-                }}
-                
-                
-                onDrop={e => {
+            onDragOver={e => {
+                if (e.target.id === 'activate') {
+                    e.preventDefault()
+                }
+            }
+            }
+            onDrop={e => {
+                if (e.target.id === 'activate') {
                     e.preventDefault();
                     e.target.style.boxShadow = "";
                     props.handleDrop();
                 }
-                }    
-            // onDrop={e => props.handleActivate()} 
+            }
+            }            
+
+
+      
             >
                 {props.pals.map(pal => (
                     <Grid.Column key={pal.id}>
-                        {/* <div >            */}
-                            {/* draggable */}
-                            {/* onDragStart={e => props.handleDrag(pal)}> */}
-                            <PalCard
-                                draggable
-                                handleDrag={props.handleDrag}
-                                pal={pal} />
-                        {/* </div>  */}
+                        <PalCard
+                            draggable
+                            handleAttack={props.handleAttack}
+                            handleDragEnter={e => {
+                                e.preventDefault();
+                                e.target.style.boxShadow = "2px 2px 20px red";
+                            }}
+                            handleDrag={props.handleDrag}
+                            pal={pal} />
                     </Grid.Column>
                 ))}
             

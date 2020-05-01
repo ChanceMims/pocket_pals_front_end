@@ -10,6 +10,7 @@ const InactivePals = props => (
                     <PalCard
                         pal={pal}
                         draggable
+                        handleDragEnter={() => ''}
                         handleDrag={e => props.handleDrag(pal)}/>
                 </Grid.Column>
             ))}
